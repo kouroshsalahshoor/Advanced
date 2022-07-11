@@ -2,6 +2,9 @@
 @{
     Layout = null;
 }
+@model HostModel
+@using Microsoft.AspNetCore.Authorization
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,3 +21,8 @@
 
 </body>
 </html>
+
+@functions {
+    [Authorize]
+    public class HostModel : PageModel { }
+}

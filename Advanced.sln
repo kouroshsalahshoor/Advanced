@@ -5,6 +5,10 @@ VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Advanced", "Advanced\Advanced.csproj", "{08C06FAE-7528-4371-8530-7A4AA5F3973F}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataModel", "DataModel\DataModel.csproj", "{D4C41475-7EEA-4937-ABF4-863F83C2F72E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWebAssembly", "BlazorWebAssembly\BlazorWebAssembly.csproj", "{205334DF-4140-4975-86CF-8D49C0A2D16B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{08C06FAE-7528-4371-8530-7A4AA5F3973F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08C06FAE-7528-4371-8530-7A4AA5F3973F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08C06FAE-7528-4371-8530-7A4AA5F3973F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4C41475-7EEA-4937-ABF4-863F83C2F72E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4C41475-7EEA-4937-ABF4-863F83C2F72E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4C41475-7EEA-4937-ABF4-863F83C2F72E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4C41475-7EEA-4937-ABF4-863F83C2F72E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{205334DF-4140-4975-86CF-8D49C0A2D16B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{205334DF-4140-4975-86CF-8D49C0A2D16B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{205334DF-4140-4975-86CF-8D49C0A2D16B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{205334DF-4140-4975-86CF-8D49C0A2D16B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
