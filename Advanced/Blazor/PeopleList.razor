@@ -1,0 +1,118 @@
+﻿@page "/people"
+@page "/"
+
+<TableTemplate RowType="Person" RowData="People"
+               Highlight="@(p => p.Location?.City)" SortDirection="@(p => p.Surname)">
+    <Header>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Dept</th>
+        <th>Location</th>
+        <th></th>
+    </tr>
+    </Header>
+    <RowTemplate Context="p">
+        <td>@p.PersonId</td>
+        <td>@p.Surname, @p.Firstname</td>
+        <td>@p.Department?.Name</td>
+        <td>@p.Location?.City, @p.Location?.State</td>
+        <td>
+            <NavLink class="btn btn-sm btn-info" href="@GetEditUrl(p.PersonId)">
+                Edit
+            </NavLink>
+        </td>
+    </RowTemplate>
+</TableTemplate>
+
+<NavLink class="btn btn-primary" href="/depts">Departments</NavLink>
+
+
+@*<TableTemplate>
+    <Header>
+    <tr><th>ID</th><th>Name</th><th>Dept</th><th>Location</th></tr>
+    </Header>
+    <Body>
+        @foreach (Person p in People ?? Enumerable.Empty<Person>())
+        {
+        <tr class="@GetClass(p?.Location?.City)">
+            <td>@p?.PersonId</td>
+            <td>@p?.Surname, @p?.Firstname</td>
+            <td>@p?.Department?.Name</td>
+            <td>@p?.Location?.City, @p?.Location?.State</td>
+        </tr>
+        }
+    </Body>
+</TableTemplate>*@
+
+@*<table class="table table-sm table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Dept</th>
+            <th>Location</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Person p in People ?? Enumerable.Empty<Person>())
+        {
+            <tr @key="p.PersonId" class="@GetClass(p?.Location?.City)">
+                <td>@p?.PersonId</td>
+                <td>@p?.Surname, @p?.Firstname</td>
+                <td>@p?.Department?.Name</td>
+                <td>@p?.Location?.City, @p?.Location?.State</td>
+            </tr>
+        }
+    </tbody>
+</table>*@
+
+@*<ThemeWrapper Theme="info" Title="Location Selector">
+    <SelectFilter values="@Cities" title="@SelectTitle"
+                  @bind-SelectedValue="SelectedCity" />
+    <button class="btn btn-primary mt-2"
+            @onclick="@(() => SelectedCity = "Oakland")">
+        Change
+    </button>
+</ThemeWrapper>*@
+
+@*<SelectFilter values="@Cities" title="@SelectTitle"
+              CustomEvent="@HandleCustom"
+              autofocus="true" name="city" required="true" />*@
+
+@*<div class="form-group">
+    <label for="city">City</label>
+    <select name="city" class="form-control" @bind="SelectedCity">
+        <option disabled selected value="">Select City</option>
+        @foreach (string city in Cities ?? Enumerable.Empty<string>())
+        {
+            <option value="@city" selected="@(city == SelectedCity)">
+                @city
+            </option>
+        }
+    </select>
+</div>*@
+@code {
+    [Inject]
+    public DataContext? Context { get; set; }
+
+    public IEnumerable<Person>? People => Context?.People
+    .Include(p => p.Department)
+    .Include(p => p.Location);
+    //public IEnumerable<Person>? People => Context?.People
+    //.Include(p => p.Department).Include(p => p.Location).Take(ItemCount);
+    public IEnumerable<string>? Cities => Context?.Locations.Select(l => l.City);
+    public string SelectedCity { get; set; } = string.Empty;
+    public string GetClass(string? city) =>
+    SelectedCity == city ? "bg-info text-white" : "";
+    [Parameter]
+    public int ItemCount { get; set; } = 4;
+    [Parameter]
+    public string? SelectTitle { get; set; }
+    //public void HandleCustom(string newValue)
+    //{
+    //    SelectedCity = newValue;
+    //}
+    public string GetEditUrl(long id) => $"/person/{id}";
+
+}
